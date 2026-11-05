@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Trash2, Link as LinkIcon, Plus, Loader2, Heart, LayoutList, LayoutGrid,
-  CheckCircle2, PlayCircle, GripVertical, Share2, Lock, Clock, Eye,
+  CheckCircle2, PlayCircle, GripVertical, Share2, Lock, Clock, Eye, Settings,
 } from 'lucide-react';
 import {
   DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, type DragEndEvent,
@@ -15,6 +15,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import Toast from './Toast';
 import ShareModal from './ShareModal';
+import BundleSettingsModal, { type BundleSecurity } from './BundleSettingsModal';
 import { ConfirmModal } from './confirm-modal';
 import { IconRenderer } from '@/lib/icons';
 import api from '@/lib/api';
@@ -209,6 +210,11 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [security, setSecurity] = useState<BundleSecurity>({
+    hasPassword: !!initialBundle.hasPassword,
+    expiresAt: initialBundle.expiresAt ? new Date(initialBundle.expiresAt).toISOString() : null,
+  });
   const [now] = useState(() => Date.now());
   const router = useRouter();
 
@@ -316,7 +322,7 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
   const savedLinks = links.filter((l) => !l.isEditing && l.url.trim());
   const watchedCount = savedLinks.filter((l) => l.isWatched).length;
   const progress = savedLinks.length > 0 ? Math.round((watchedCount / savedLinks.length) * 100) : 0;
-  const expired = initialBundle.expiresAt && new Date(initialBundle.expiresAt).getTime() < now;
+  const expired = !!security.expiresAt && new Date(security.expiresAt).getTime() < now;
 
   return (
     <>
@@ -348,14 +354,14 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
                   <span className="flex items-center gap-1.5">
                     <Eye size={16} /> {initialBundle.views} views
                   </span>
-                  {initialBundle.hasPassword && (
-                    <span className="flex items-center gap-1.5">
+                  {security.hasPassword && (
+                    <span className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400">
                       <Lock size={14} /> Protected
                     </span>
                   )}
-                  {initialBundle.expiresAt && (
-                    <span className={`flex items-center gap-1.5 ${expired ? 'text-rose-500' : ''}`}>
-                      <Clock size={14} /> {expired ? 'Expired' : `Expires ${new Date(initialBundle.expiresAt).toLocaleString()}`}
+                  {security.expiresAt && (
+                    <span className={`flex items-center gap-1.5 ${expired ? 'text-rose-500' : 'text-amber-600 dark:text-amber-400'}`}>
+                      <Clock size={14} /> {expired ? 'Expired' : `Expires ${new Date(security.expiresAt).toLocaleString()}`}
                     </span>
                   )}
                 </div>
@@ -376,6 +382,14 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
               >
                 <Heart size={18} fill={isFavorite ? 'currentColor' : 'none'} className={isFavorite ? 'text-rose-500' : ''} />
                 <span className="hidden sm:inline">Favorite</span>
+              </button>
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-semibold transition-colors"
+                title="Password & self-destruct"
+              >
+                <Settings size={18} />
+                <span className="hidden sm:inline">Settings</span>
               </button>
               <button
                 onClick={() => setIsShareOpen(true)}
@@ -445,7 +459,23 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
       </div>
 
       {isShareOpen && (
-        <ShareModal bundle={{ ...initialBundle, links: savedLinks }} onClose={() => setIsShareOpen(false)} />
+        <ShareModal
+          bundle={{ ...initialBundle, ...security, links: savedLinks }}
+          onClose={() => setIsShareOpen(false)}
+        />
+      )}
+
+      {isSettingsOpen && (
+        <BundleSettingsModal
+          shortId={initialBundle.shortId}
+          security={security}
+          onClose={() => setIsSettingsOpen(false)}
+          onSaved={(next) => {
+            setSecurity(next);
+            setToast({ message: 'Settings saved.', type: 'success' });
+            router.refresh();
+          }}
+        />
       )}
 
       <ConfirmModal

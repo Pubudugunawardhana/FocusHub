@@ -29,11 +29,13 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserMenu } from '@/components/user-menu';
+import { BundleDemo } from '@/components/landing/bundle-demo';
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
+  const [demoMode, setDemoMode] = useState<'youtube' | 'bundles'>('youtube');
   const [demoStep, setDemoStep] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
   const [watched, setWatched] = useState(false);
@@ -146,10 +148,38 @@ export default function LandingPage() {
               Your Distraction-Free Workspace
             </h2>
             <p className="text-zinc-500 dark:text-zinc-400 max-w-md mx-auto text-sm">
-              Experience the FocusHub environment inside our simulated sandbox.
+              Try both halves of FocusHub inside a simulated sandbox - nothing here touches real data.
             </p>
           </div>
           
+          {/* Demo mode switch */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex p-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-md">
+              {([
+                { id: 'youtube', label: 'YouTube Collections', icon: PlaySquare },
+                { id: 'bundles', label: 'Link Bundles', icon: Link2 },
+              ] as const).map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  onClick={() => setDemoMode(id)}
+                  aria-pressed={demoMode === id}
+                  className={`flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-all ${
+                    demoMode === id
+                      ? 'bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white shadow-md'
+                      : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                  }`}
+                >
+                  <Icon size={15} className={demoMode === id ? (id === 'youtube' ? 'text-red-500' : 'text-emerald-500') : ''} />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {demoMode === 'bundles' ? (
+            <BundleDemo />
+          ) : (
+          <>
           {/* Demo Step Navigation */}
           <div role="tablist" className="flex flex-wrap justify-center gap-2 mb-8 w-full max-w-lg mx-auto">
             {[0, 1, 2, 3].map((step) => (
@@ -578,6 +608,8 @@ export default function LandingPage() {
               </main>
             </div>
           </div>
+          </>
+          )}
         </section>
 
         {/* Refined Feature Cards Section */}

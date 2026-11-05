@@ -77,6 +77,7 @@ export function BundleGrid({ items, onToggleFavorite, onDelete }: {
             progress={bundleProgress(b)}
             locked={b.hasPassword}
             expired={isExpired(b)}
+            expiresAt={b.expiresAt}
             onToggleFavorite={() => onToggleFavorite(b.shortId)}
             onDelete={onDelete ? () => setToDelete(b.shortId) : undefined}
           />
