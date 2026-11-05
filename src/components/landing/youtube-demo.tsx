@@ -75,14 +75,14 @@ export function YoutubeDemo() {
               <header className="sticky top-0 z-40 w-full bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/10 transition-colors duration-300">
                 <div className="px-6 h-16 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                    <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center shadow-lg shadow-brand-500/20">
                       <PlaySquare size={16} className="text-white fill-white/20" />
                     </div>
                     <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-white">FocusHub</span>
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    <button className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl px-4 py-2.5 transition-all flex items-center gap-2 shadow-md hidden sm:flex">
+                    <button className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl px-4 py-2.5 transition-all flex items-center gap-2 shadow-md hidden sm:flex">
                       <Plus size={16} /> New Collection
                     </button>
                     <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 border-2 border-white dark:border-zinc-800 shadow-sm"></div>
@@ -94,7 +94,7 @@ export function YoutubeDemo() {
               <main className="flex-1 p-8 relative transition-colors duration-300">
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2">
-                    <LayoutGrid size={24} className="text-emerald-500" />
+                    <LayoutGrid size={24} className="text-brand-500" />
                     Your Collections
                   </h2>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Organize and track your YouTube tutorials</p>
@@ -103,11 +103,11 @@ export function YoutubeDemo() {
                 <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500 ${demoStep !== 0 ? 'opacity-20 blur-md pointer-events-none' : ''}`}>
                   
                   {/* Card 1 */}
-                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex justify-between items-start mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
-                        <Code2 size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-brand-50 dark:group-hover:bg-brand-500/10 transition-colors">
+                        <Code2 size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" />
                       </div>
                       <div className="p-2 rounded-full text-rose-500 bg-rose-50 dark:bg-rose-500/10">
                         <Heart size={20} className="fill-current" />
@@ -122,7 +122,7 @@ export function YoutubeDemo() {
                         <span className="text-zinc-900 dark:text-white text-lg">75%</span>
                       </div>
                       <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2.5 mb-3 overflow-hidden shadow-inner border border-black/5 dark:border-white/5">
-                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '75%', background: 'linear-gradient(90deg, #10b981, #059669)' }}>
+                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '75%', background: 'linear-gradient(90deg, #9333ea, #3b82f6)' }}>
                           <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
                         </div>
                       </div>
@@ -134,11 +134,11 @@ export function YoutubeDemo() {
                   </div>
 
                   {/* Card 2 */}
-                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex justify-between items-start mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
-                        <Music size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-brand-50 dark:group-hover:bg-brand-500/10 transition-colors">
+                        <Music size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" />
                       </div>
                       <div className="p-2 rounded-full text-zinc-400">
                         <Heart size={20} />
@@ -153,7 +153,7 @@ export function YoutubeDemo() {
                         <span className="text-zinc-900 dark:text-white text-lg">30%</span>
                       </div>
                       <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2.5 mb-3 overflow-hidden shadow-inner border border-black/5 dark:border-white/5">
-                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '30%', background: 'linear-gradient(90deg, #10b981, #059669)' }}>
+                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '30%', background: 'linear-gradient(90deg, #9333ea, #3b82f6)' }}>
                           <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
                         </div>
                       </div>
@@ -165,11 +165,11 @@ export function YoutubeDemo() {
                   </div>
 
                   {/* Card 3 (Hidden on very small screens for balance) */}
-                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group hidden lg:flex">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="h-full bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden group hidden lg:flex">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex justify-between items-start mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
-                        <BarChart3 size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                      <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center mb-1 group-hover:bg-brand-50 dark:group-hover:bg-brand-500/10 transition-colors">
+                        <BarChart3 size={22} className="text-zinc-600 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" />
                       </div>
                       <div className="p-2 rounded-full text-zinc-400">
                         <Heart size={20} />
@@ -184,7 +184,7 @@ export function YoutubeDemo() {
                         <span className="text-zinc-900 dark:text-white text-lg">100%</span>
                       </div>
                       <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2.5 mb-3 overflow-hidden shadow-inner border border-black/5 dark:border-white/5">
-                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '100%', background: 'linear-gradient(90deg, #10b981, #059669)' }}>
+                        <div className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" style={{ width: '100%', background: 'linear-gradient(90deg, #9333ea, #3b82f6)' }}>
                           <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
                         </div>
                       </div>
@@ -214,8 +214,8 @@ export function YoutubeDemo() {
                         
                         <div className="flex flex-col gap-5">
                           {/* Top Icon */}
-                          <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30">
-                            <PlaySquare size={24} className="fill-emerald-100/50 dark:fill-emerald-500/10" />
+                          <div className="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/30">
+                            <PlaySquare size={24} className="fill-brand-100/50 dark:fill-brand-500/10" />
                           </div>
 
                           {/* Title & Subtitle */}
@@ -246,7 +246,7 @@ export function YoutubeDemo() {
                             <button
                               onClick={handleSaveVideo}
                               disabled={isSaving}
-                              className="flex-1 bg-emerald-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-80 disabled:cursor-wait"
+                              className="flex-1 bg-brand-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-80 disabled:cursor-wait"
                             >
                               {isSaving ? (
                                 <>
@@ -268,7 +268,7 @@ export function YoutubeDemo() {
                         {/* Header Card */}
                         <div className="bg-white dark:bg-zinc-950 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 relative overflow-hidden">
                           {/* Top Border Line */}
-                          <div className="absolute top-0 left-0 right-0 h-1.5 bg-emerald-300 dark:bg-emerald-500/50"></div>
+                          <div className="absolute top-0 left-0 right-0 h-1.5 bg-brand-300 dark:bg-brand-500/50"></div>
                           
                           <div className="p-6">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -282,7 +282,7 @@ export function YoutubeDemo() {
                                   <div className="flex flex-col">
                                     <div className="flex items-center gap-3">
                                       <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Game</h2>
-                                      <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-200 dark:border-emerald-500/20">
+                                      <span className="px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold border border-brand-200 dark:border-brand-500/20">
                                         General
                                       </span>
                                     </div>
@@ -292,7 +292,7 @@ export function YoutubeDemo() {
                                   <div className="flex items-center gap-2">
                                     <PlayCircle size={16} /> 0 Videos
                                   </div>
-                                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+                                  <div className="flex items-center gap-2 text-brand-600 dark:text-brand-500">
                                     <CheckCircle2 size={16} /> 0 Completed
                                   </div>
                                 </div>
@@ -305,7 +305,7 @@ export function YoutubeDemo() {
                                 </button>
                                 <button 
                                   onClick={() => setDemoStep(3)}
-                                  className="flex items-center gap-2 bg-emerald-600 text-white font-medium rounded-xl px-4 py-2 hover:bg-emerald-700 transition-colors shadow-md shadow-emerald-500/20"
+                                  className="flex items-center gap-2 bg-brand-600 text-white font-medium rounded-xl px-4 py-2 hover:bg-brand-700 transition-colors shadow-md shadow-brand-500/20"
                                 >
                                   <Plus size={16} /> Add Video
                                 </button>
@@ -323,7 +323,7 @@ export function YoutubeDemo() {
                                 <span>0%</span>
                               </div>
                               <div className="h-2.5 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden border border-black/5 dark:border-white/5 shadow-inner">
-                                <div className="h-full bg-emerald-500 w-0"></div>
+                                <div className="h-full bg-brand-500 w-0"></div>
                               </div>
                             </div>
                           </div>
@@ -387,7 +387,7 @@ export function YoutubeDemo() {
                           {/* Progress Bar */}
                           <div className="h-2 w-full bg-zinc-200 dark:bg-zinc-900 rounded-full overflow-hidden border border-black/5 dark:border-white/5 shadow-inner">
                             <div 
-                              className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-1000 ease-out relative"
+                              className="h-full bg-gradient-to-r from-brand-500 to-brand-400 transition-all duration-1000 ease-out relative"
                               style={{ width: watched ? '100%' : '66%' }}
                             >
                               <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
@@ -398,17 +398,17 @@ export function YoutubeDemo() {
                           <div className="space-y-2 pt-2">
                             <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 text-zinc-600 dark:text-zinc-400">
                               <span className="truncate">1. Machine Learning Fundamentals</span>
-                              <span className="text-[10px] flex items-center gap-1 text-zinc-500 font-medium"><Check size={12} className="text-emerald-500" /> Done</span>
+                              <span className="text-[10px] flex items-center gap-1 text-zinc-500 font-medium"><Check size={12} className="text-brand-500" /> Done</span>
                             </div>
                             <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 text-zinc-600 dark:text-zinc-400">
                               <span className="truncate">2. Building AI Agents with LangChain</span>
-                              <span className="text-[10px] flex items-center gap-1 text-zinc-500 font-medium"><Check size={12} className="text-emerald-500" /> Done</span>
+                              <span className="text-[10px] flex items-center gap-1 text-zinc-500 font-medium"><Check size={12} className="text-brand-500" /> Done</span>
                             </div>
                             
                             {/* Interactive watching task */}
                             <div className={`flex items-center justify-between text-xs p-3 rounded-xl border transition-all duration-300 ${
                               watched 
-                                ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-zinc-600 dark:text-zinc-400' 
+                                ? 'bg-brand-50 dark:bg-brand-500/10 border-brand-200 dark:border-brand-500/20 text-zinc-600 dark:text-zinc-400' 
                                 : 'bg-white dark:bg-zinc-900 border-black/10 dark:border-white/20 text-zinc-900 dark:text-white shadow-sm'
                             }`}>
                               <span className="font-medium truncate flex-1 pr-3">3. Advanced Cybersecurity & Ethical Hacking</span>
@@ -420,14 +420,14 @@ export function YoutubeDemo() {
                                   onChange={(e) => setWatched(e.target.checked)}
                                   className="sr-only peer"
                                 />
-                                <div className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-2 ${
+                                <div className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-brand-500 peer-focus-visible:ring-offset-2 ${
                                   watched 
-                                    ? 'bg-emerald-500 border-emerald-500 text-white' 
-                                    : 'border-zinc-300 dark:border-zinc-500 bg-zinc-50 dark:bg-black group-hover:border-emerald-500'
+                                    ? 'bg-brand-500 border-brand-500 text-white' 
+                                    : 'border-zinc-300 dark:border-zinc-500 bg-zinc-50 dark:bg-black group-hover:border-brand-500'
                                 }`}>
                                   {watched && <Check size={10} strokeWidth={3} />}
                                 </div>
-                                <span className={`text-[10px] font-bold uppercase tracking-wider ${watched ? 'text-emerald-600 dark:text-emerald-500' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200'}`}>
+                                <span className={`text-[10px] font-bold uppercase tracking-wider ${watched ? 'text-brand-600 dark:text-brand-500' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200'}`}>
                                   {watched ? 'Watched' : 'Mark'}
                                 </span>
                               </label>
@@ -437,14 +437,14 @@ export function YoutubeDemo() {
 
                         {/* Celebration Banner */}
                         {watched && (
-                          <div className="p-4 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 rounded-xl text-center animate-fade-in space-y-1.5 shadow-sm transition-colors duration-300">
+                          <div className="p-4 bg-brand-50 dark:bg-brand-500/10 border border-brand-200 dark:border-brand-500/20 text-brand-700 dark:text-brand-400 rounded-xl text-center animate-fade-in space-y-1.5 shadow-sm transition-colors duration-300">
                             <p className="font-bold text-sm flex items-center justify-center gap-2">
                               <span>🎉</span> Collection Completed!
                             </p>
-                            <p className="text-xs text-emerald-600 dark:text-emerald-500/80">You&apos;ve mastered AI & Security distraction-free.</p>
+                            <p className="text-xs text-brand-600 dark:text-brand-500/80">You&apos;ve mastered AI & Security distraction-free.</p>
                             <button
                               onClick={handleResetDemo}
-                              className="mt-3 text-[10px] font-bold text-emerald-700 dark:text-white bg-emerald-100 dark:bg-white/10 hover:bg-emerald-200 dark:hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1.5 mx-auto"
+                              className="mt-3 text-[10px] font-bold text-brand-700 dark:text-white bg-brand-100 dark:bg-white/10 hover:bg-brand-200 dark:hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1.5 mx-auto"
                             >
                               <RotateCcw size={10} /> Reset Demo
                             </button>

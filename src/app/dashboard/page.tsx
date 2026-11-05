@@ -31,7 +31,7 @@ function SectionHeader({ title, href, onNew, newLabel }: { title: string; href: 
       <div className="flex items-center gap-2">
         <button
           onClick={onNew}
-          className="flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 px-3 py-1.5 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-500/10 px-3 py-1.5 rounded-lg transition-colors"
         >
           <Plus size={15} /> {newLabel}
         </button>
@@ -65,7 +65,7 @@ export default function Overview() {
         <>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <Stat icon={PlaySquare} value={items.collections.length} label="YouTube Collections" tone="bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400" />
-            <Stat icon={CheckCircle2} value={watchedVideos} label={`of ${totalVideos} videos watched`} tone="bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" />
+            <Stat icon={CheckCircle2} value={watchedVideos} label={`of ${totalVideos} videos watched`} tone="bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400" />
             <Stat icon={Link2} value={items.bundles.length} label={`Link Bundles · ${totalLinks} links`} tone="bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400" />
             <Stat icon={Eye} value={totalViews} label="Bundle views" tone="bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400" />
           </div>
@@ -81,7 +81,7 @@ export default function Overview() {
                     <button onClick={() => setCreating('collection')} className="bg-zinc-900 dark:bg-white text-white dark:text-black text-sm font-semibold rounded-xl px-6 py-3 flex items-center gap-2">
                       <PlaySquare size={16} /> New Collection
                     </button>
-                    <button onClick={() => setCreating('bundle')} className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl px-6 py-3 flex items-center gap-2">
+                    <button onClick={() => setCreating('bundle')} className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl px-6 py-3 flex items-center gap-2">
                       <Link2 size={16} /> New Bundle
                     </button>
                   </div>

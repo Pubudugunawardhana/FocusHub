@@ -127,7 +127,7 @@ export function SmartNotepad({ videoId, initialNotes, onSeek, onClose, onSave, g
         <button
           key={`ts-${match.index}`}
           onClick={() => onSeek(totalSeconds)}
-          className="inline-flex items-center gap-1 font-mono text-sm bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 dark:bg-emerald-500/20 hover:bg-emerald-500/30 px-1.5 py-0.5 rounded cursor-pointer transition-colors"
+          className="inline-flex items-center gap-1 font-mono text-sm bg-brand-500/20 text-brand-600 dark:text-brand-400 dark:bg-brand-500/20 hover:bg-brand-500/30 px-1.5 py-0.5 rounded cursor-pointer transition-colors"
           title={`Jump to ${matchStr}`}
         >
           <Clock size={12} />
@@ -154,7 +154,7 @@ export function SmartNotepad({ videoId, initialNotes, onSeek, onClose, onSave, g
     <div className="flex flex-col h-full bg-white dark:bg-zinc-900 w-full animate-in slide-in-from-right duration-300">
       <div className="p-4 border-b border-black/10 dark:border-white/10 flex items-center justify-between bg-zinc-50 dark:bg-zinc-950">
         <h3 className="font-bold flex items-center gap-2 text-zinc-800 dark:text-zinc-100">
-          <FileText size={18} className="text-emerald-500" />
+          <FileText size={18} className="text-brand-500" />
           Smart Notes
         </h3>
         <div className="flex items-center gap-2">
@@ -162,7 +162,7 @@ export function SmartNotepad({ videoId, initialNotes, onSeek, onClose, onSave, g
             <button
               onClick={saveNotes}
               disabled={isSaving}
-              className="p-2 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 transition-colors flex items-center gap-2 text-sm font-semibold disabled:opacity-50"
+              className="p-2 rounded-lg bg-brand-500 text-white hover:bg-brand-600 transition-colors flex items-center gap-2 text-sm font-semibold disabled:opacity-50"
             >
               {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
               Save
@@ -195,7 +195,7 @@ export function SmartNotepad({ videoId, initialNotes, onSeek, onClose, onSave, g
               <div className="p-2 border-b border-black/5 dark:border-white/5 bg-white dark:bg-zinc-900 sticky top-0 z-10 flex gap-2">
                 <button
                   onClick={insertTimestamp}
-                  className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-400 dark:hover:bg-emerald-500/30 rounded-lg transition-colors"
+                  className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 bg-brand-100 text-brand-700 hover:bg-brand-200 dark:bg-brand-500/20 dark:text-brand-400 dark:hover:bg-brand-500/30 rounded-lg transition-colors"
                 >
                   <Clock size={14} />
                   Insert Time
@@ -219,8 +219,8 @@ export function SmartNotepad({ videoId, initialNotes, onSeek, onClose, onSave, g
       </div>
       
       {isEditing && (
-        <div className="p-3 bg-emerald-50 dark:bg-emerald-500/10 border-t border-emerald-200 dark:border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-400">
-          <span className="font-semibold">Tip:</span> Type a time like <code className="bg-emerald-200 dark:bg-emerald-500/30 px-1 rounded">01:25</code> and it will become a clickable link to jump the video to that exact second!
+        <div className="p-3 bg-brand-50 dark:bg-brand-500/10 border-t border-brand-200 dark:border-brand-500/20 text-xs text-brand-700 dark:text-brand-400">
+          <span className="font-semibold">Tip:</span> Type a time like <code className="bg-brand-200 dark:bg-brand-500/30 px-1 rounded">01:25</code> and it will become a clickable link to jump the video to that exact second!
         </div>
       )}
     </div>

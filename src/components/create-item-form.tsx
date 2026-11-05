@@ -7,7 +7,7 @@ import { IconRenderer, ICON_OPTIONS } from '@/lib/icons';
 import api, { apiError } from '@/lib/api';
 
 const inputCls =
-  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all';
+  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all';
 const labelCls = 'text-sm font-medium text-zinc-700 dark:text-zinc-300 ml-1';
 
 interface Props {
@@ -62,7 +62,7 @@ export function CreateItemForm({ kind, onCancel }: Props) {
 
   return (
     <form onSubmit={submit}>
-      <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5 border border-emerald-200 dark:border-emerald-500/20">
+      <div className="w-12 h-12 rounded-2xl bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-5 border border-brand-200 dark:border-brand-500/20">
         <IconRenderer iconName={icon} size={24} />
       </div>
       <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">{isBundle ? 'Create Link Bundle' : 'Create YouTube Collection'}</h2>
@@ -84,7 +84,7 @@ export function CreateItemForm({ kind, onCancel }: Props) {
               key={iconName}
               type="button"
               onClick={() => setIcon(iconName)}
-              className={`p-2 rounded-lg flex items-center justify-center transition-all ${icon === iconName ? 'bg-emerald-500 text-white shadow-md scale-110' : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800'}`}
+              className={`p-2 rounded-lg flex items-center justify-center transition-all ${icon === iconName ? 'bg-brand-500 text-white shadow-md scale-110' : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800'}`}
               title={iconName}
             >
               <IconRenderer iconName={iconName} size={18} />
@@ -153,7 +153,7 @@ export function CreateItemForm({ kind, onCancel }: Props) {
         <button
           type="submit"
           disabled={saving}
-          className="flex-1 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-70 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
+          className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-70 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
         >
           {saving ? <><Loader2 size={16} className="animate-spin" /> Creating...</> : <>Create <ArrowRight size={16} /></>}
         </button>

@@ -22,7 +22,7 @@ interface Props {
 const MIN_PASSWORD = 4;
 
 const inputCls =
-  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all';
+  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all';
 const pillBtn =
   'px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors';
 
@@ -99,7 +99,7 @@ export default function BundleSettingsModal({ shortId, security, onClose, onSave
           <X size={16} />
         </button>
 
-        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
+        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/20">
           <Settings size={22} />
         </div>
         <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-1">Bundle Settings</h2>
@@ -137,7 +137,7 @@ export default function BundleSettingsModal({ shortId, security, onClose, onSave
             <button
               type="button"
               onClick={() => setMode(mode === 'set' ? 'keep' : 'set')}
-              className={`${pillBtn} ${mode === 'set' ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
+              className={`${pillBtn} ${mode === 'set' ? 'bg-brand-600 border-brand-600 text-white' : 'border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
             >
               {security.hasPassword ? 'Change password' : 'Add password'}
             </button>
@@ -236,7 +236,7 @@ export default function BundleSettingsModal({ shortId, security, onClose, onSave
           <button
             type="submit"
             disabled={!dirty || saving}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
           >
             {saving ? <><Loader2 size={16} className="animate-spin" /> Saving...</> : 'Save Changes'}
           </button>

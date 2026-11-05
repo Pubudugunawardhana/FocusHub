@@ -106,7 +106,7 @@ export default function ShareModal({ bundle, onClose }: ShareModalProps) {
           <X size={16} />
         </button>
 
-        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
+        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/20">
           <Share2 size={22} />
         </div>
         <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-1">Share &quot;{bundle.name}&quot;</h2>
@@ -134,10 +134,10 @@ export default function ShareModal({ bundle, onClose }: ShareModalProps) {
         </div>
 
         <div className="flex items-center gap-2 bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-1.5 pl-4 mb-6">
-          <input readOnly value={bundleUrl} className="flex-1 bg-transparent outline-none text-sm font-medium text-emerald-600 dark:text-emerald-400 truncate" />
+          <input readOnly value={bundleUrl} className="flex-1 bg-transparent outline-none text-sm font-medium text-brand-600 dark:text-brand-400 truncate" />
           <button
             onClick={copyLink}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-colors"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />} {copied ? 'Copied!' : 'Copy'}
           </button>

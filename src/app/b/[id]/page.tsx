@@ -25,7 +25,7 @@ function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans transition-colors duration-300 relative">
       <div className="fixed inset-0 z-0 flex justify-center pointer-events-none">
-        <div className="absolute top-[-20%] w-[800px] h-[600px] bg-emerald-600/10 dark:bg-emerald-600/15 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] w-[800px] h-[600px] bg-brand-600/10 dark:bg-brand-600/15 rounded-full blur-[120px]" />
       </div>
       <div className="fixed inset-0 z-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
       <div className="absolute top-6 right-6 z-50">

@@ -49,7 +49,7 @@ export default function Register() {
     <div className="min-h-screen flex flex-col items-center justify-center relative bg-zinc-50 dark:bg-black font-sans transition-colors duration-300 px-6">
       {/* Background Gradients */}
       <div className="fixed inset-0 z-0 flex justify-center pointer-events-none">
-        <div className="absolute top-[-20%] w-[800px] h-[600px] bg-emerald-600/10 dark:bg-emerald-600/15 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-300"></div>
+        <div className="absolute top-[-20%] w-[800px] h-[600px] bg-brand-600/10 dark:bg-brand-600/15 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-300"></div>
       </div>
       {/* Grid Pattern */}
       <div className="fixed inset-0 z-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none transition-colors duration-300"></div>
@@ -67,7 +67,7 @@ export default function Register() {
 
       <div className="w-full max-w-md bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl relative z-10 glass-panel backdrop-blur-xl transition-colors duration-300">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mb-5 shadow-inner border border-emerald-200 dark:border-emerald-500/20">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 mb-5 shadow-inner border border-brand-200 dark:border-brand-500/20">
             <UserPlus size={26} />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-2">Create Account</h1>
@@ -85,7 +85,7 @@ export default function Register() {
             <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 ml-1">Email Address</label>
             <input 
               type="email" 
-              className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm dark:shadow-inner" 
+              className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm dark:shadow-inner" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -97,7 +97,7 @@ export default function Register() {
             <div className="relative">
               <input 
                 type={showPassword ? "text" : "password"} 
-                className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm dark:shadow-inner pr-12" 
+                className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm dark:shadow-inner pr-12" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -118,7 +118,7 @@ export default function Register() {
             <div className="relative">
               <input 
                 type={showConfirmPassword ? "text" : "password"} 
-                className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm dark:shadow-inner pr-12" 
+                className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm dark:shadow-inner pr-12" 
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -137,7 +137,7 @@ export default function Register() {
           <div className="pt-4">
             <button 
               type="submit" 
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-70 disabled:cursor-wait" 
+              className="w-full bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-70 disabled:cursor-wait" 
               disabled={loading}
             >
               {loading ? (
@@ -157,7 +157,7 @@ export default function Register() {
 
         <div className="mt-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
           Already have an account?{' '}
-          <Link href="/login" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium transition-colors">
+          <Link href="/login" className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors">
             Sign in
           </Link>
         </div>

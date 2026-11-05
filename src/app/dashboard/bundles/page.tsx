@@ -56,7 +56,7 @@ export default function BundlesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             {[
               { icon: Link2, value: totals.links, label: 'Total Links', tone: 'bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400' },
-              { icon: BarChart2, value: totals.visited, label: 'Links Visited', tone: 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
+              { icon: BarChart2, value: totals.visited, label: 'Links Visited', tone: 'bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400' },
               { icon: Eye, value: totals.views, label: 'Total Views', tone: 'bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400' },
             ].map(({ icon: Icon, value, label, tone }) => (
               <div key={label} className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl p-5 shadow-sm flex items-center gap-4">
@@ -77,7 +77,7 @@ export default function BundlesPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search bundles..."
-              className="w-full bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+              className="w-full bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
             />
           </div>
           <BundleGrid items={filtered} onToggleFavorite={items.toggleBundleFavorite} onDelete={items.deleteBundle} />

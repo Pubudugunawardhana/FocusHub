@@ -44,7 +44,7 @@ const StatusDropdown = ({ status, onChange }: { status: string, onChange: (val: 
   }, [isOpen]);
 
   const baseColor = status === 'Watched' 
-    ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20' 
+    ? 'bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-400 border-brand-200 dark:border-brand-500/20' 
     : status === 'Watching'
     ? 'bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-500/20'
     : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-black/5 dark:border-white/10';
@@ -73,7 +73,7 @@ const StatusDropdown = ({ status, onChange }: { status: string, onChange: (val: 
                 }`}
               >
                 {opt}
-                {status === opt && <Check size={14} className="text-emerald-500" />}
+                {status === opt && <Check size={14} className="text-brand-500" />}
               </button>
             ))}
           </div>
@@ -252,7 +252,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
         {/* Collection Header Panel */}
         <div className="w-full bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 rounded-3xl p-8 mb-10 shadow-xl backdrop-blur-xl transition-colors duration-300 relative overflow-hidden">
           {/* Subtle top highlight */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-50"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-50"></div>
           
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
@@ -263,7 +263,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
                   </div>
                 )}
                 <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">{collection?.name || 'Collection'}</h2>
-                <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
                   {collection?.category || 'General'}
                 </span>
               </div>
@@ -272,7 +272,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
                 <div className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
                   <PlayCircle size={16} /> {total} Videos
                 </div>
-                <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                <div className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400">
                   <CheckCircle2 size={16} /> {watched} Completed
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto mt-2 md:mt-0">
               <button 
                 onClick={() => setShowListModal(true)}
-                className="flex items-center justify-center gap-2 text-sm font-semibold rounded-xl px-5 py-3 transition-all shadow-sm flex-1 sm:flex-none border bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-black/10 dark:border-white/10 hover:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:border-emerald-200 dark:hover:border-emerald-500/30"
+                className="flex items-center justify-center gap-2 text-sm font-semibold rounded-xl px-5 py-3 transition-all shadow-sm flex-1 sm:flex-none border bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-black/10 dark:border-white/10 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 hover:border-brand-200 dark:hover:border-brand-500/30"
                 title="View and Search Video List"
               >
                 <List size={16} />
@@ -297,7 +297,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
               </button>
               <button 
                 onClick={() => setShowAddModal(true)} 
-                className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl px-5 py-3 transition-all flex items-center justify-center gap-2 shadow-md flex-1 sm:flex-none"
+                className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl px-5 py-3 transition-all flex items-center justify-center gap-2 shadow-md flex-1 sm:flex-none"
               >
                 <Plus size={16} /> Add Video
               </button>
@@ -320,7 +320,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
             <div className="w-full bg-zinc-100 dark:bg-zinc-800/50 rounded-full h-3 overflow-hidden shadow-inner border border-black/5 dark:border-white/5">
               <div 
                 className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden" 
-                style={{ width: `${progressPercent}%`, background: 'linear-gradient(90deg, #10b981, #059669)' }}
+                style={{ width: `${progressPercent}%`, background: 'linear-gradient(90deg, #9333ea, #3b82f6)' }}
               >
                 <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
               </div>
@@ -382,7 +382,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
               <X size={16} />
             </button>
             
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5 border border-emerald-200 dark:border-emerald-500/20">
+            <div className="w-12 h-12 rounded-2xl bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-5 border border-brand-200 dark:border-brand-500/20">
               <PlaySquare size={24} />
             </div>
             
@@ -401,7 +401,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
                 <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 ml-1">YouTube URL</label>
                 <input 
                   type="url" 
-                  className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm dark:shadow-inner" 
+                  className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm dark:shadow-inner" 
                   value={newVideoUrl}
                   onChange={(e) => setNewVideoUrl(e.target.value)}
                   placeholder="https://youtube.com/watch?v=..."
@@ -419,7 +419,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
                 </button>
                 <button 
                   type="submit" 
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
                   disabled={adding}
                 >
                   {adding ? (
@@ -532,7 +532,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
           {!showNotepad && (
             <button
               onClick={() => setShowNotepad(true)}
-              className="absolute bottom-10 right-6 md:bottom-[56px] md:right-12 z-[120] bg-emerald-600/90 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl shadow-2xl backdrop-blur-md transition-all hover:scale-105 flex items-center gap-2.5 border border-emerald-400/30 group"
+              className="absolute bottom-10 right-6 md:bottom-[56px] md:right-12 z-[120] bg-brand-600/90 hover:bg-brand-500 text-white px-4 py-2.5 rounded-xl shadow-2xl backdrop-blur-md transition-all hover:scale-105 flex items-center gap-2.5 border border-brand-400/30 group"
             >
               <FileText size={18} className="group-hover:animate-pulse" />
               <span className="font-bold text-sm tracking-wide">
@@ -563,7 +563,7 @@ export default function CollectionDetail({ params }: { params: Promise<{ id: str
                 placeholder="Search videos by title..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-zinc-50 dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-zinc-900 dark:text-white placeholder:text-zinc-500"
+                className="w-full bg-zinc-50 dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-zinc-900 dark:text-white placeholder:text-zinc-500"
               />
             </div>
             

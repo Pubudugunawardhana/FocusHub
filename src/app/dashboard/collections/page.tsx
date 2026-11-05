@@ -51,7 +51,7 @@ export default function CollectionsPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search collections..."
-              className="w-full bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+              className="w-full bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
             />
           </div>
           <CollectionGrid items={filtered} onToggleFavorite={items.toggleCollectionFavorite} onDelete={items.deleteCollection} />

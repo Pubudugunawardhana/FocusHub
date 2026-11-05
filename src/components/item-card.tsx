@@ -30,15 +30,15 @@ export function ItemCard({ kind, href, name, icon, category, isFavorite, progres
 
   return (
     <Link href={href} className="group outline-none">
-      <div className={`h-full bg-white dark:bg-black/40 border ${expired ? 'border-rose-300/60 dark:border-rose-500/30' : 'border-black/10 dark:border-white/10'} rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden`}>
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className={`h-full bg-white dark:bg-black/40 border ${expired ? 'border-rose-300/60 dark:border-rose-500/30' : 'border-black/10 dark:border-white/10'} rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-brand-500/30 transition-all duration-300 backdrop-blur-xl flex flex-col relative overflow-hidden`}>
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity" />
 
         <div className="flex justify-between items-start mb-4">
-          <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+          <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/5 flex items-center justify-center group-hover:bg-brand-50 dark:group-hover:bg-brand-500/10 transition-colors">
             <IconRenderer
               iconName={icon || 'Folder'}
               size={22}
-              className="text-zinc-600 dark:text-zinc-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
+              className="text-zinc-600 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors"
             />
           </div>
           <div className="flex items-center gap-1">
@@ -95,7 +95,7 @@ export function ItemCard({ kind, href, name, icon, category, isFavorite, progres
           <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2.5 mb-3 overflow-hidden border border-black/5 dark:border-white/5">
             <div
               className="h-full rounded-full transition-all duration-1000 ease-out"
-              style={{ width: `${progress.percentage}%`, background: 'linear-gradient(90deg, #10b981, #059669)' }}
+              style={{ width: `${progress.percentage}%`, background: 'linear-gradient(90deg, #9333ea, #3b82f6)' }}
             />
           </div>
           <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">

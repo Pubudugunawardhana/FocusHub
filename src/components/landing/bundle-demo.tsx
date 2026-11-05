@@ -141,7 +141,7 @@ export function BundleDemo() {
           {step === 1 && (
             <div className="grid lg:grid-cols-[1fr_1.1fr] gap-6 animate-fade-in">
               <div className={`${card} p-6`}>
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-4">
                   <Link2 size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-1">Create Link Bundle</h3>
@@ -161,7 +161,7 @@ export function BundleDemo() {
                     role="switch"
                     aria-checked={usePassword}
                     onClick={() => setUsePassword(!usePassword)}
-                    className={`w-10 h-6 rounded-full p-0.5 transition-colors ${usePassword ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-700'}`}
+                    className={`w-10 h-6 rounded-full p-0.5 transition-colors ${usePassword ? 'bg-brand-500' : 'bg-zinc-300 dark:bg-zinc-700'}`}
                   >
                     <span className={`block w-5 h-5 rounded-full bg-white shadow transition-transform ${usePassword ? 'translate-x-4' : ''}`} />
                   </button>
@@ -184,7 +184,7 @@ export function BundleDemo() {
                       onClick={() => setExpiry(value)}
                       className={`py-2 rounded-lg text-[11px] font-semibold border transition-all ${
                         expiry === value
-                          ? 'bg-emerald-600 border-emerald-600 text-white'
+                          ? 'bg-brand-600 border-brand-600 text-white'
                           : 'border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900'
                       }`}
                     >
@@ -196,7 +196,7 @@ export function BundleDemo() {
                 <button
                   onClick={() => setCreating(true)}
                   disabled={creating}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-70 text-white text-sm font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md transition-colors"
+                  className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-70 text-white text-sm font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md transition-colors"
                 >
                   {creating ? <><Loader2 size={16} className="animate-spin" /> Creating...</> : <>Create Bundle <ArrowRight size={16} /></>}
                 </button>
@@ -210,7 +210,7 @@ export function BundleDemo() {
                     <Favicon color={l.color} letter={l.letter} />
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">{l.title}</p>
-                      <p className="text-xs text-emerald-600 dark:text-emerald-400 truncate">{l.url}</p>
+                      <p className="text-xs text-brand-600 dark:text-brand-400 truncate">{l.url}</p>
                     </div>
                   </div>
                 ))}
@@ -225,7 +225,7 @@ export function BundleDemo() {
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <h3 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-                      <Share2 size={18} className="text-emerald-500" /> Share &quot;Frontend Starter Pack&quot;
+                      <Share2 size={18} className="text-brand-500" /> Share &quot;Frontend Starter Pack&quot;
                     </h3>
                     <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
                       {usePassword ? 'People with this link must enter the password.' : 'Anyone with this link can view the bundle.'}
@@ -254,10 +254,10 @@ export function BundleDemo() {
                 </div>
 
                 <div className="flex items-center gap-2 bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-1.5 pl-4 mb-6">
-                  <span className="flex-1 text-sm font-medium text-emerald-600 dark:text-emerald-400 truncate">https://{SHORT_URL}</span>
+                  <span className="flex-1 text-sm font-medium text-brand-600 dark:text-brand-400 truncate">https://{SHORT_URL}</span>
                   <button
                     onClick={() => setCopied('link')}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold transition-colors"
                   >
                     {copied === 'link' ? <Check size={14} /> : <Copy size={14} />} {copied === 'link' ? 'Copied!' : 'Copy'}
                   </button>
