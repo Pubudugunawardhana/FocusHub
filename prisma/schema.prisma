@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                      String       @id @default(cuid())
+  name                    String?
+  email                   String       @unique
+  password                String
+  image                   String?      @db.Text
+  resetPasswordOtp        String?
+  resetPasswordOtpExpires DateTime?
+  bundles                 Bundle[]
+  collections             Collection[]
+  videos                  Video[]
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+}
+
+// ---------- Link Bundles ----------
+
+model Bundle {
+  id          String    @id @default(cuid())
+  shortId     String    @unique
+  name        String
+  description String?
+  password    String?
+  expiresAt   DateTime?
+  category    String?
+  icon        String?   @default("Folder")
+  isFavorite  Boolean   @default(false)
+  views       Int       @default(0)
+  links       Link[]
+  userId      String?
+  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Link {
+  id          String  @id @default(cuid())
+  url         String
+  title       String?
+  description String?
+  favicon     String?
+  note        String?
+  isWatched   Boolean @default(false)
+  order       Int     @default(0)
+  bundleId    String
+  bundle      Bundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+
+  @@index([bundleId])
+}
+
+// ---------- YouTube Collections ----------
+
+model Collection {
+  id         String   @id @default(cuid())
+  name       String
+  category   String   @default("General")
+  isFavorite Boolean  @default(false)
+  icon       String   @default("Folder")
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  videos     Video[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Video {
+  id           String     @id @default(cuid())
+  youtubeId    String
+  title        String
+  thumbnail    String?
+  duration     String     @default("00:00")
+  // "To Watch" | "Watching" | "Watched"
+  status       String     @default("To Watch")
+  order        Int        @default(0)
+  notes        String     @default("") @db.Text
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([collectionId, youtubeId])
+  @@index([userId])
+}
