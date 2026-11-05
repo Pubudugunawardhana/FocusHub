@@ -1,73 +1,156 @@
-# FocusHub
+<div align="center">
 
-One Next.js app that merges **FocusTube (YouTube Collection Manager)** and **URL Bundle Creator**. There is no separate backend: every API is a Next.js Route Handler, so the whole thing deploys to Vercel as a single project.
+# 🎯 FocusHub
 
-## Features
+**Organize what you learn. Share what you find.**
 
-**YouTube Collections**
-- Collections with icons and categories, filled in automatically from video titles
-- Add a video by URL (YouTube Data API v3 with an oEmbed fallback)
-- Status per video (To Watch / Watching / Watched) and progress for each collection
-- Drag-and-drop reordering, an embedded player, and Smart Notes with clickable timestamps
+YouTube learning collections and shareable link bundles in one Next.js app. No separate backend.
 
-**Link Bundles**
-- Share many links behind one short link (`/b/<id>`). Title, description and favicon are fetched automatically.
-- Optional password (bcrypt) and self-destruct after 1h, 24h or 7d. Both are enforced on the server.
-- Drag-and-drop links, "visited" progress and a view counter
-- Share modal with copy link, QR code, copy as text, and CSV/TXT export
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Prisma](https://img.shields.io/badge/Prisma-5-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io)
+[![Neon](https://img.shields.io/badge/Postgres-Neon-00E599?logo=postgresql&logoColor=white)](https://neon.com)
+[![Auth.js](https://img.shields.io/badge/Auth.js-v5-7C3AED)](https://authjs.dev)
 
-**Account**
-- Email and password login (NextAuth v5, httpOnly cookie session)
-- Forgot password with a 6-digit email code
-- Profile name and picture, password change, account deletion (removes all of the user's data)
-- One dashboard (Overview, YouTube Collections, Link Bundles, Favorites) with light and dark themes
+[Features](#-features) · [Quick start](#-quick-start) · [Environment](#-environment-variables) · [Deploy](#-deploy-to-vercel) · [Structure](#-project-structure)
 
-## Stack
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Prisma + PostgreSQL · NextAuth v5 · @dnd-kit
+</div>
 
-## Local development
+---
+
+## ✨ Features
+
+### 📺 YouTube Collections
+- **Smart collections**: icons and categories are filled in automatically from video titles
+- **Add by URL**: video details come from the YouTube Data API v3, with an oEmbed fallback
+- **Track progress**: each video is To Watch, Watching or Watched, and every collection shows a progress bar
+- **Study mode**: embedded player, drag-and-drop ordering, and Smart Notes with clickable timestamps
+
+### 🔗 Link Bundles
+- **One link, many URLs**: share a whole set behind a short `/b/<id>` link
+- **Rich previews**: titles, descriptions and favicons are fetched automatically
+- **Privacy controls**: optional password (bcrypt) and self-destruct after 1h, 24h or 7d, both enforced on the server
+- **Sharing tools**: QR code, copy as text, CSV/TXT export, visited tracking and a view counter
+
+### 👤 Account
+- Email and password login with Auth.js v5 (httpOnly cookie session)
+- Password reset with a 6-digit email code
+- Profile name and picture, password change, and full account deletion
+- One dashboard (Overview, Collections, Bundles, Favorites) with **light and dark themes**
+
+---
+
+## 🧱 Tech stack
+
+| Layer | Tools |
+|---|---|
+| **Framework** | Next.js 16 (App Router, Route Handlers), React 19, TypeScript |
+| **Styling** | Tailwind CSS v4, lucide-react icons, next-themes |
+| **Data** | Prisma ORM on [Neon](https://neon.com) serverless Postgres |
+| **Auth** | Auth.js (NextAuth v5) Credentials provider, bcryptjs |
+| **UI extras** | @dnd-kit (drag and drop), qrcode.react, react-youtube |
+| **Services** | Nodemailer (SMTP), YouTube Data API, cheerio (link metadata) |
+
+---
+
+## 🚀 Quick start
+
+> **Requirements:** Node.js 20+ and a [Neon](https://neon.com) account (the free plan works).
 
 ```bash
+# 1. Install dependencies
 npm install
-cp .env.example .env              # then fill in the values
-npx prisma migrate dev            # creates the tables
-npm run dev                       # http://localhost:3000
+
+# 2. Create .env, then add AUTH_SECRET (and SMTP if needed)
+cp .env.example .env
+
+# 3. Pull the Neon connection strings into .env
+npx neon@latest env pull
+
+# 4. Create the database tables
+npx prisma migrate deploy
+
+# 5. Start the dev server
+npm run dev
 ```
 
-Generate `AUTH_SECRET` with `npx auth secret` or `openssl rand -base64 32`.
+Open **http://localhost:3000** and create an account.
 
-## Environment variables
+> [!TIP]
+> Generate `AUTH_SECRET` with `npx auth secret` or `openssl rand -base64 32`.
 
-| Name | Required | Notes |
-|---|---|---|
-| `DATABASE_URL` | yes | Neon pooled connection (`-pooler` host), used by the app |
-| `DATABASE_URL_UNPOOLED` | yes | Neon direct connection, used by `prisma migrate` |
+> [!NOTE]
+> To experiment without touching production data, create a Neon development branch with `neon checkout dev --create`, then run `neon env pull` again.
 
-`neon deploy` (or `neon env pull`) writes both into `.env` for the Neon project linked in `neon.ts` / `.neon`.
-| `AUTH_SECRET` | yes | Signs session cookies and bundle unlock cookies |
-| `YOUTUBE_API_KEY` | no | Without it, video duration shows as `00:00` |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `FROM_EMAIL`, `FROM_NAME` | for password reset | Any SMTP provider (Mailtrap, Gmail app password, Resend, ...) |
+### Scripts
 
-## Deploy to Vercel
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Generate the Prisma client, apply migrations, then build |
+| `npm run build:local` | Build without running migrations |
+| `npm start` | Serve the production build |
+| `npm run lint` / `npm run typecheck` | ESLint / TypeScript checks |
+| `npm run db:migrate` | Create a new migration (`prisma migrate dev`) |
+| `npm run db:studio` | Browse the data in Prisma Studio |
 
-1. Push this folder to a GitHub repo.
-2. Get the Neon connection strings from `.env` (or the Neon console): `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` (direct).
-3. On Vercel, choose **Add New → Project**, import the repo, and keep the **Next.js** preset.
-4. Add the environment variables above under **Settings → Environment Variables**.
-5. Deploy. The build command (`npm run build`) runs `prisma generate && prisma migrate deploy && next build`, so the database tables are created or updated on every deploy.
+---
 
-## Project layout
+## 🔐 Environment variables
 
+| Name | Required | Description |
+|---|:---:|---|
+| `DATABASE_URL` | ✅ | Neon **pooled** connection (`-pooler` host), used by the app |
+| `DATABASE_URL_UNPOOLED` | ✅ | Neon **direct** connection, used by `prisma migrate` |
+| `AUTH_SECRET` | ✅ | Signs session cookies and bundle unlock cookies |
+| `YOUTUBE_API_KEY` | ➖ | Optional. Without it, video duration shows as `00:00` |
+| `SMTP_HOST` `SMTP_PORT` `SMTP_USER` `SMTP_PASS` | 📧 | Needed for password reset emails (Mailtrap, Gmail app password, Resend, ...) |
+| `FROM_EMAIL` `FROM_NAME` | 📧 | Sender shown on password reset emails |
+
+`neon deploy` and `neon env pull` write the database variables for the project linked in `neon.ts` / `.neon`.
+
+---
+
+## ▲ Deploy to Vercel
+
+1. Push the repo to GitHub.
+2. In Vercel, choose **Add New → Project**, import the repo and keep the **Next.js** preset.
+3. Add the [environment variables](#-environment-variables) under **Settings → Environment Variables**.
+4. Click **Deploy**.
+
+> [!IMPORTANT]
+> `npm run build` runs `prisma generate && prisma migrate deploy && next build`, so every deploy creates or updates the database tables.
+
+---
+
+## 📁 Project structure
+
+```text
+FocusHub/
+├── prisma/
+│   ├── schema.prisma          # User, Collection, Video, Bundle, Link
+│   └── migrations/
+├── src/
+│   ├── auth.ts                # Auth.js setup (Credentials + Prisma)
+│   ├── auth.config.ts
+│   ├── proxy.ts               # Route protection (Next 16 "middleware")
+│   ├── lib/                   # prisma, bundles, youtube, metadata (SSRF-guarded), email, api client
+│   ├── components/            # Shared UI
+│   └── app/
+│       ├── api/               # REST route handlers
+│       ├── dashboard/         # Overview, collections, bundles, favorites
+│       ├── collections/[id]/  # Collection page (player + notes)
+│       ├── edit/[id]/         # Bundle manager
+│       └── b/[id]/            # Public share page
+└── neon.ts                    # Neon project config
 ```
-prisma/schema.prisma        User, Collection, Video, Bundle, Link
-src/auth.ts, auth.config.ts NextAuth (Credentials + Prisma)
-src/proxy.ts                Route protection (Next 16 "middleware")
-src/lib/                    prisma, bundles service, youtube, metadata (SSRF-guarded), email, api client
-src/app/api/...             REST route handlers
-src/app/dashboard/...       Overview, collections, bundles, favorites
-src/app/collections/[id]    YouTube collection page (player + notes)
-src/app/edit/[id]           Bundle manager
-src/app/b/[id]              Public share page
-```
 
-Made by Pubudu Gunawardhana.
+---
+
+<div align="center">
+
+Made with ❤️ by **Pubudu Gunawardhana**
+
+</div>
