@@ -40,8 +40,10 @@ Generate `AUTH_SECRET` with `npx auth secret` or `openssl rand -base64 32`.
 
 | Name | Required | Notes |
 |---|---|---|
-| `DATABASE_URL` | yes | Postgres connection string (pooled is fine) |
-| `DIRECT_URL` | yes | Direct (non-pooled) connection, used by `prisma migrate`. Can be the same as `DATABASE_URL`. |
+| `DATABASE_URL` | yes | Neon pooled connection (`-pooler` host), used by the app |
+| `DATABASE_URL_UNPOOLED` | yes | Neon direct connection, used by `prisma migrate` |
+
+`neon deploy` (or `neon env pull`) writes both into `.env` for the Neon project linked in `neon.ts` / `.neon`.
 | `AUTH_SECRET` | yes | Signs session cookies and bundle unlock cookies |
 | `YOUTUBE_API_KEY` | no | Without it, video duration shows as `00:00` |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `FROM_EMAIL`, `FROM_NAME` | for password reset | Any SMTP provider (Mailtrap, Gmail app password, Resend, ...) |
@@ -49,7 +51,7 @@ Generate `AUTH_SECRET` with `npx auth secret` or `openssl rand -base64 32`.
 ## Deploy to Vercel
 
 1. Push this folder to a GitHub repo.
-2. Create a Postgres database. Neon, Vercel Postgres (Storage tab) and Supabase all work. Copy its pooled and direct connection strings.
+2. Get the Neon connection strings from `.env` (or the Neon console): `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` (direct).
 3. On Vercel, choose **Add New → Project**, import the repo, and keep the **Next.js** preset.
 4. Add the environment variables above under **Settings → Environment Variables**.
 5. Deploy. The build command (`npm run build`) runs `prisma generate && prisma migrate deploy && next build`, so the database tables are created or updated on every deploy.
