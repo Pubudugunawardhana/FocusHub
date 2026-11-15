@@ -13,8 +13,9 @@ YouTube learning collections and shareable link bundles in one Next.js app. No s
 [![Prisma](https://img.shields.io/badge/Prisma-5-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io)
 [![Neon](https://img.shields.io/badge/Postgres-Neon-00E599?logo=postgresql&logoColor=white)](https://neon.com)
 [![Auth.js](https://img.shields.io/badge/Auth.js-v5-7C3AED)](https://authjs.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[Features](#-features) · [Quick start](#-quick-start) · [Environment](#-environment-variables) · [Deploy](#-deploy-to-vercel) · [Structure](#-project-structure)
+[Features](#-features) · [Quick start](#-quick-start) · [Environment](#-environment-variables) · [Deploy](#-deploy-to-vercel) · [Structure](#-project-structure) · [Security](#-security) · [License](#-license)
 
 </div>
 
@@ -146,6 +147,18 @@ FocusHub/
 │       └── b/[id]/            # Public share page
 └── neon.ts                    # Neon project config
 ```
+
+---
+
+## 🛡️ Security
+
+Found a security problem? Please **don't open a public issue**. Report it privately from the repository's **Security → Report a vulnerability** page. See [SECURITY.md](SECURITY.md) for details.
+
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE). You are free to use, change and share the code, including for commercial projects, as long as the copyright notice is kept. The software comes with no warranty.
 
 ---
 
