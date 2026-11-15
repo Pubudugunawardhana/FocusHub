@@ -51,7 +51,7 @@ export function ConfirmModal({
           <X size={16} />
         </button>
         
-        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${isDestructive ? 'bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20' : 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20'}`}>
+        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${isDestructive ? 'bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20' : 'bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 border-brand-200 dark:border-brand-500/20'}`}>
           <AlertTriangle size={24} />
         </div>
         
@@ -71,7 +71,7 @@ export function ConfirmModal({
             type="button" 
             onClick={onConfirm} 
             disabled={isLoading}
-            className={`flex-1 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-70 ${isDestructive ? 'bg-rose-600 hover:bg-rose-700' : 'bg-emerald-600 hover:bg-emerald-700'}`}
+            className={`flex-1 text-white text-sm font-semibold rounded-xl px-4 py-3 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-70 ${isDestructive ? 'bg-rose-600 hover:bg-rose-700' : 'bg-brand-600 hover:bg-brand-700'}`}
           >
             {isLoading ? (
               <><Loader2 size={16} className="animate-spin" /> Processing...</>

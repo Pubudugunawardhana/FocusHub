@@ -154,7 +154,7 @@ export default function SettingsPage() {
       <div className="max-w-4xl mx-auto">
         <div className="mb-10">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-3">
-            <User className="text-emerald-500" size={32} />
+            <User className="text-brand-500" size={32} />
             Account Settings
           </h2>
           <p className="text-zinc-500 dark:text-zinc-400 mt-2">Manage your profile information and security preferences.</p>
@@ -165,7 +165,7 @@ export default function SettingsPage() {
           {/* Profile Section */}
           <div className="md:col-span-2">
             <div className="bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 rounded-3xl p-8 shadow-xl backdrop-blur-xl transition-colors duration-300 relative overflow-hidden mb-8">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-50"></div>
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-50"></div>
               
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-6">Profile Information</h3>
               
@@ -186,7 +186,7 @@ export default function SettingsPage() {
                         <Camera className="text-white" size={32} />
                       </div>
                     </div>
-                    <button type="button" onClick={() => fileInputRef.current?.click()} className="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline">
+                    <button type="button" onClick={() => fileInputRef.current?.click()} className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline">
                       Change Picture
                     </button>
                     <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
@@ -210,14 +210,14 @@ export default function SettingsPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="e.g. John Doe"
-                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm" 
+                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm" 
                       />
                     </div>
                   </div>
                 </div>
 
                 {profileMsg.text && (
-                  <div className={`p-4 rounded-xl mb-6 flex items-center gap-3 text-sm font-medium ${profileMsg.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20' : 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20'}`}>
+                  <div className={`p-4 rounded-xl mb-6 flex items-center gap-3 text-sm font-medium ${profileMsg.type === 'success' ? 'bg-brand-50 text-brand-700 border border-brand-200 dark:bg-brand-500/10 dark:text-brand-400 dark:border-brand-500/20' : 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20'}`}>
                     {profileMsg.type === 'success' && <CheckCircle2 size={18} />}
                     {profileMsg.text}
                   </div>
@@ -227,7 +227,7 @@ export default function SettingsPage() {
                   <button 
                     type="submit" 
                     disabled={savingProfile}
-                    className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-70 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl px-6 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
+                    className="bg-brand-600 hover:bg-brand-700 disabled:opacity-70 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl px-6 py-3 transition-all flex items-center justify-center gap-2 shadow-md"
                   >
                     {savingProfile ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                     Save Profile
@@ -238,7 +238,7 @@ export default function SettingsPage() {
             
             {/* Security Section */}
             <div className="bg-white dark:bg-black/50 border border-black/10 dark:border-white/10 rounded-3xl p-8 shadow-xl backdrop-blur-xl transition-colors duration-300 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-50"></div>
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 to-brand-400 opacity-50"></div>
               
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
                 <KeyRound className="text-zinc-400" size={20} />
@@ -254,12 +254,12 @@ export default function SettingsPage() {
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
                       required
-                      className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm pr-11" 
+                      className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm pr-11" 
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword({ ...showPassword, current: !showPassword.current })}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-emerald-500 transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-brand-500 transition-colors"
                     >
                       {showPassword.current ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
@@ -275,12 +275,12 @@ export default function SettingsPage() {
                         onChange={(e) => setNewPassword(e.target.value)}
                         required
                         minLength={6}
-                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm pr-11" 
+                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm pr-11" 
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword({ ...showPassword, new: !showPassword.new })}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-emerald-500 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-brand-500 transition-colors"
                       >
                         {showPassword.new ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
@@ -295,12 +295,12 @@ export default function SettingsPage() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                         minLength={6}
-                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-300 shadow-sm pr-11" 
+                        className="w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-300 shadow-sm pr-11" 
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword({ ...showPassword, confirm: !showPassword.confirm })}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-emerald-500 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-brand-500 transition-colors"
                       >
                         {showPassword.confirm ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
@@ -309,7 +309,7 @@ export default function SettingsPage() {
                 </div>
 
                 {passwordMsg.text && (
-                  <div className={`p-4 rounded-xl mt-4 flex items-center gap-3 text-sm font-medium ${passwordMsg.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20' : 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20'}`}>
+                  <div className={`p-4 rounded-xl mt-4 flex items-center gap-3 text-sm font-medium ${passwordMsg.type === 'success' ? 'bg-brand-50 text-brand-700 border border-brand-200 dark:bg-brand-500/10 dark:text-brand-400 dark:border-brand-500/20' : 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20'}`}>
                     {passwordMsg.type === 'success' && <CheckCircle2 size={18} />}
                     {passwordMsg.text}
                   </div>

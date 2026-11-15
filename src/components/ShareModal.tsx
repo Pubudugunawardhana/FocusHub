@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import Papa from 'papaparse';
-import { Copy, Check, Download, ExternalLink, X, Share2 } from 'lucide-react';
+import { Copy, Check, Download, ExternalLink, X, Share2, Lock, Clock, Globe } from 'lucide-react';
 
 interface ShareLink {
   url: string;
@@ -14,7 +14,14 @@ interface ShareLink {
 }
 
 interface ShareModalProps {
-  bundle: { shortId: string; name: string; description?: string | null; links: ShareLink[] };
+  bundle: {
+    shortId: string;
+    name: string;
+    description?: string | null;
+    hasPassword?: boolean;
+    expiresAt?: string | Date | null;
+    links: ShareLink[];
+  };
   onClose: () => void;
 }
 
@@ -60,6 +67,8 @@ export default function ShareModal({ bundle, onClose }: ShareModalProps) {
       txt += '\n';
     });
     txt += `*View Full Bundle:* ${bundleUrl}`;
+    if (bundle.hasPassword) txt += `
+🔒 Password protected`;
     navigator.clipboard.writeText(txt);
     setTextCopied(true);
     setTimeout(() => setTextCopied(false), 2000);
@@ -97,17 +106,38 @@ export default function ShareModal({ bundle, onClose }: ShareModalProps) {
           <X size={16} />
         </button>
 
-        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
+        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 bg-brand-100 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/20">
           <Share2 size={22} />
         </div>
         <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-1">Share &quot;{bundle.name}&quot;</h2>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-6">Anyone with this link can view the bundle.</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
+          {bundle.hasPassword
+            ? 'People with this link must enter the password to see the links.'
+            : 'Anyone with this link can view the bundle.'}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-6">
+          {bundle.hasPassword ? (
+            <span className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20">
+              <Lock size={12} /> Password protected
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+              <Globe size={12} /> Public
+            </span>
+          )}
+          {bundle.expiresAt && (
+            <span className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-500/20">
+              <Clock size={12} /> Expires {new Date(bundle.expiresAt).toLocaleString()}
+            </span>
+          )}
+        </div>
 
         <div className="flex items-center gap-2 bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-1.5 pl-4 mb-6">
-          <input readOnly value={bundleUrl} className="flex-1 bg-transparent outline-none text-sm font-medium text-emerald-600 dark:text-emerald-400 truncate" />
+          <input readOnly value={bundleUrl} className="flex-1 bg-transparent outline-none text-sm font-medium text-brand-600 dark:text-brand-400 truncate" />
           <button
             onClick={copyLink}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-colors"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />} {copied ? 'Copied!' : 'Copy'}
           </button>

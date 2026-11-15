@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Trash2, Link as LinkIcon, Plus, Loader2, Heart, LayoutList, LayoutGrid,
-  CheckCircle2, PlayCircle, GripVertical, Share2, Lock, Clock, Eye,
+  CheckCircle2, PlayCircle, GripVertical, Share2, Lock, Clock, Eye, Settings,
 } from 'lucide-react';
 import {
   DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, type DragEndEvent,
@@ -15,6 +15,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import Toast from './Toast';
 import ShareModal from './ShareModal';
+import BundleSettingsModal, { type BundleSecurity } from './BundleSettingsModal';
 import { ConfirmModal } from './confirm-modal';
 import { IconRenderer } from '@/lib/icons';
 import api from '@/lib/api';
@@ -45,7 +46,7 @@ export interface BundleData {
 }
 
 const inputCls =
-  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all';
+  'w-full bg-zinc-50 dark:bg-black border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white rounded-xl px-4 py-3 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all';
 
 function Favicon({ src, size }: { src?: string | null; size: number }) {
   const [err, setErr] = useState(false);
@@ -101,7 +102,7 @@ function SortableLink({ link, isFetching, onChange, onUrlBlur, onDone, onRemove,
         {link.isEditing ? (
           <>
             <div
-              className={`flex items-center gap-3 bg-zinc-50 dark:bg-black border ${!link.url.trim() ? 'border-rose-500/50' : 'border-black/5 dark:border-white/5'} rounded-xl p-3 focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all`}
+              className={`flex items-center gap-3 bg-zinc-50 dark:bg-black border ${!link.url.trim() ? 'border-rose-500/50' : 'border-black/5 dark:border-white/5'} rounded-xl p-3 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all`}
             >
               <Favicon src={link.favicon} size={20} />
               <input
@@ -113,7 +114,7 @@ function SortableLink({ link, isFetching, onChange, onUrlBlur, onDone, onRemove,
                 onBlur={(e) => onUrlBlur(link.id, e.target.value)}
                 className="w-full bg-transparent border-none outline-none text-zinc-900 dark:text-white"
               />
-              {isFetching && <Loader2 size={16} className="animate-spin text-emerald-500 ml-auto" />}
+              {isFetching && <Loader2 size={16} className="animate-spin text-brand-500 ml-auto" />}
             </div>
             <input
               type="text"
@@ -157,7 +158,7 @@ function SortableLink({ link, isFetching, onChange, onUrlBlur, onDone, onRemove,
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-600 dark:text-emerald-400 text-sm break-all hover:underline"
+              className="text-brand-600 dark:text-brand-400 text-sm break-all hover:underline"
             >
               {link.url}
             </a>
@@ -170,7 +171,7 @@ function SortableLink({ link, isFetching, onChange, onUrlBlur, onDone, onRemove,
               <button
                 className={`border transition-all flex items-center gap-1.5 font-medium rounded-lg px-3 py-1 text-xs ${
                   link.isWatched
-                    ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400'
+                    ? 'bg-brand-50 dark:bg-brand-500/10 border-brand-200 dark:border-brand-500/20 text-brand-600 dark:text-brand-400'
                     : 'bg-white dark:bg-black/50 border-black/10 dark:border-white/10 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300'
                 }`}
                 onClick={() => onToggleWatched(link.id)}
@@ -209,6 +210,11 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [security, setSecurity] = useState<BundleSecurity>({
+    hasPassword: !!initialBundle.hasPassword,
+    expiresAt: initialBundle.expiresAt ? new Date(initialBundle.expiresAt).toISOString() : null,
+  });
   const [now] = useState(() => Date.now());
   const router = useRouter();
 
@@ -316,7 +322,7 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
   const savedLinks = links.filter((l) => !l.isEditing && l.url.trim());
   const watchedCount = savedLinks.filter((l) => l.isWatched).length;
   const progress = savedLinks.length > 0 ? Math.round((watchedCount / savedLinks.length) * 100) : 0;
-  const expired = initialBundle.expiresAt && new Date(initialBundle.expiresAt).getTime() < now;
+  const expired = !!security.expiresAt && new Date(security.expiresAt).getTime() < now;
 
   return (
     <>
@@ -326,14 +332,14 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
         <div className="bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 rounded-[32px] p-6 sm:p-8 shadow-sm flex flex-col gap-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+              <div className="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center text-brand-600 dark:text-brand-400 shrink-0">
                 <IconRenderer iconName={initialBundle.icon || 'Folder'} size={30} strokeWidth={1.5} />
               </div>
               <div className="flex flex-col gap-2 min-w-0">
                 <div className="flex items-center gap-3 flex-wrap">
                   <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white m-0 tracking-tight">{initialBundle.name}</h1>
                   {initialBundle.category && (
-                    <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-sm font-semibold rounded-lg">
+                    <span className="px-3 py-1 bg-brand-100 dark:bg-brand-500/20 text-brand-700 dark:text-brand-400 text-sm font-semibold rounded-lg">
                       {initialBundle.category}
                     </span>
                   )}
@@ -342,20 +348,20 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
                   <span className="flex items-center gap-1.5">
                     <PlayCircle size={16} /> {savedLinks.length} Links
                   </span>
-                  <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                  <span className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400">
                     <CheckCircle2 size={16} /> {watchedCount} Completed
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Eye size={16} /> {initialBundle.views} views
                   </span>
-                  {initialBundle.hasPassword && (
-                    <span className="flex items-center gap-1.5">
+                  {security.hasPassword && (
+                    <span className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400">
                       <Lock size={14} /> Protected
                     </span>
                   )}
-                  {initialBundle.expiresAt && (
-                    <span className={`flex items-center gap-1.5 ${expired ? 'text-rose-500' : ''}`}>
-                      <Clock size={14} /> {expired ? 'Expired' : `Expires ${new Date(initialBundle.expiresAt).toLocaleString()}`}
+                  {security.expiresAt && (
+                    <span className={`flex items-center gap-1.5 ${expired ? 'text-rose-500' : 'text-amber-600 dark:text-amber-400'}`}>
+                      <Clock size={14} /> {expired ? 'Expired' : `Expires ${new Date(security.expiresAt).toLocaleString()}`}
                     </span>
                   )}
                 </div>
@@ -378,6 +384,14 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
                 <span className="hidden sm:inline">Favorite</span>
               </button>
               <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-semibold transition-colors"
+                title="Password & self-destruct"
+              >
+                <Settings size={18} />
+                <span className="hidden sm:inline">Settings</span>
+              </button>
+              <button
                 onClick={() => setIsShareOpen(true)}
                 disabled={!!expired}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 font-semibold transition-colors disabled:opacity-50"
@@ -387,7 +401,7 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
               </button>
               <button
                 onClick={handleAddNewLink}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors shadow-sm"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors shadow-sm"
               >
                 <Plus size={18} /> Add Link
               </button>
@@ -411,7 +425,7 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
               <span className="text-zinc-900 dark:text-white">{progress}%</span>
             </div>
             <div className="w-full h-3 bg-zinc-100 dark:bg-zinc-900 rounded-full overflow-hidden">
-              <div className="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out" style={{ width: `${progress}%` }} />
+              <div className="h-full bg-brand-500 rounded-full transition-all duration-1000 ease-out" style={{ width: `${progress}%` }} />
             </div>
           </div>
         </div>
@@ -445,7 +459,23 @@ export default function BundleManager({ initialBundle }: { initialBundle: Bundle
       </div>
 
       {isShareOpen && (
-        <ShareModal bundle={{ ...initialBundle, links: savedLinks }} onClose={() => setIsShareOpen(false)} />
+        <ShareModal
+          bundle={{ ...initialBundle, ...security, links: savedLinks }}
+          onClose={() => setIsShareOpen(false)}
+        />
+      )}
+
+      {isSettingsOpen && (
+        <BundleSettingsModal
+          shortId={initialBundle.shortId}
+          security={security}
+          onClose={() => setIsSettingsOpen(false)}
+          onSaved={(next) => {
+            setSecurity(next);
+            setToast({ message: 'Settings saved.', type: 'success' });
+            router.refresh();
+          }}
+        />
       )}
 
       <ConfirmModal

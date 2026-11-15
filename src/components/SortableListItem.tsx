@@ -40,7 +40,7 @@ export function SortableListItem({ video, onPlay, disabled }: SortableListItemPr
     <div 
       ref={setNodeRef} 
       style={style}
-      className={`w-full text-left p-4 rounded-xl border ${isDragging ? 'border-emerald-500 shadow-xl bg-white dark:bg-zinc-900 scale-[1.01]' : 'border-black/5 dark:border-white/5 hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10'} transition-all flex items-start gap-3 group bg-white dark:bg-zinc-950`}
+      className={`w-full text-left p-4 rounded-xl border ${isDragging ? 'border-brand-500 shadow-xl bg-white dark:bg-zinc-900 scale-[1.01]' : 'border-black/5 dark:border-white/5 hover:border-brand-500/50 hover:bg-brand-50 dark:hover:bg-brand-500/10'} transition-all flex items-start gap-3 group bg-white dark:bg-zinc-950`}
     >
       {!disabled && (
         <div 
@@ -70,9 +70,9 @@ export function SortableListItem({ video, onPlay, disabled }: SortableListItemPr
           </div>
         </div>
         <div className="flex-1 min-w-0 flex flex-col justify-center h-full mt-1">
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-white truncate mb-1 group-hover/btn:text-emerald-600 dark:group-hover/btn:text-emerald-400 transition-colors">{video.title}</h4>
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-white truncate mb-1 group-hover/btn:text-brand-600 dark:group-hover/btn:text-brand-400 transition-colors">{video.title}</h4>
           <div className="flex items-center gap-3">
-            <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium border ${video.status === 'Watched' ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20' : video.status === 'Watching' ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20' : 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'}`}>{video.status}</span>
+            <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium border ${video.status === 'Watched' ? 'bg-brand-50 text-brand-600 border-brand-200 dark:bg-brand-500/10 dark:text-brand-400 dark:border-brand-500/20' : video.status === 'Watching' ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20' : 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'}`}>{video.status}</span>
             {video.duration && <span className="text-[10px] text-zinc-500 flex items-center gap-1"><Clock size={10} /> {video.duration}</span>}
           </div>
         </div>

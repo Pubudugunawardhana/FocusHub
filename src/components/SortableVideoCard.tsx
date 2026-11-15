@@ -41,7 +41,7 @@ export function SortableVideoCard({ video, onPlay, onDelete, statusDropdown }: S
     <div 
       ref={setNodeRef} 
       style={style}
-      className={`group flex flex-col bg-white dark:bg-zinc-950 border ${isDragging ? 'border-emerald-500 shadow-2xl scale-[1.02]' : 'border-black/10 dark:border-white/10 shadow-lg'} rounded-3xl overflow-hidden hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 relative`}
+      className={`group flex flex-col bg-white dark:bg-zinc-950 border ${isDragging ? 'border-brand-500 shadow-2xl scale-[1.02]' : 'border-black/10 dark:border-white/10 shadow-lg'} rounded-3xl overflow-hidden hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 relative`}
     >
       <div className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 bg-black/40 backdrop-blur-md rounded-lg text-white/70 hover:text-white hover:bg-black/60 transition-colors opacity-0 group-hover:opacity-100" {...attributes} {...listeners}>
         <GripHorizontal size={18} />
@@ -69,14 +69,14 @@ export function SortableVideoCard({ video, onPlay, onDelete, statusDropdown }: S
           onClick={() => onPlay(video.youtubeId)}
           className="absolute inset-0 flex items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 cursor-pointer"
         >
-          <div className="bg-emerald-600/90 backdrop-blur-md rounded-full p-4 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-emerald-500 hover:scale-110">
+          <div className="bg-brand-600/90 backdrop-blur-md rounded-full p-4 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-brand-500 hover:scale-110">
             <PlayCircle size={28} className="text-white fill-white/20" />
           </div>
         </button>
       </div>
       
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-bold text-zinc-900 dark:text-white text-[15px] mb-4 line-clamp-2 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" title={video.title}>
+        <h3 className="font-bold text-zinc-900 dark:text-white text-[15px] mb-4 line-clamp-2 leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" title={video.title}>
           {video.title}
         </h3>
         

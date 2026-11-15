@@ -56,6 +56,7 @@ export async function createBundle(input: BundleInput, userId: string | null) {
   if (!input?.name?.trim()) throw new HttpError(400, 'Bundle name is required.');
 
   const pw = input.password?.trim();
+  if (pw && pw.length < 4) throw new HttpError(400, 'Password must be at least 4 characters.');
   const hashed = pw ? await bcrypt.hash(pw, 10) : null;
   const ms = input.expiresIn ? EXPIRY_MS[input.expiresIn] : undefined;
 
@@ -101,12 +102,44 @@ export async function getOwnedBundle(shortId: string, userId: string) {
   return stripPassword(bundle!);
 }
 
+export const MIN_BUNDLE_PASSWORD = 4;
+
 export async function updateBundle(
   shortId: string,
   userId: string,
-  data: { isFavorite?: boolean; name?: string; description?: string | null; category?: string | null; icon?: string },
+  data: {
+    isFavorite?: boolean;
+    name?: string;
+    description?: string | null;
+    category?: string | null;
+    icon?: string;
+    /** string = set/change, null = remove, undefined = unchanged */
+    password?: string | null;
+    /** 'none' = never expires, '1h' | '24h' | '7d' = from now, undefined = unchanged */
+    expiresIn?: string;
+  },
 ) {
   await getOwned(shortId, userId);
+
+  let password: string | null | undefined;
+  if (data.password === null) {
+    password = null;
+  } else if (data.password !== undefined) {
+    const pw = String(data.password).trim();
+    if (pw.length < MIN_BUNDLE_PASSWORD) {
+      throw new HttpError(400, `Password must be at least ${MIN_BUNDLE_PASSWORD} characters.`);
+    }
+    // A new hash also invalidates every existing unlock cookie (the token is tied to the hash)
+    password = await bcrypt.hash(pw, 10);
+  }
+
+  let expiresAt: Date | null | undefined;
+  if (data.expiresIn !== undefined) {
+    if (data.expiresIn === 'none') expiresAt = null;
+    else if (EXPIRY_MS[data.expiresIn]) expiresAt = new Date(Date.now() + EXPIRY_MS[data.expiresIn]);
+    else throw new HttpError(400, 'Invalid expiry option.');
+  }
+
   const updated = await prisma.bundle.update({
     where: { shortId },
     data: {
@@ -115,6 +148,8 @@ export async function updateBundle(
       ...(data.description !== undefined && { description: data.description || null }),
       ...(data.category !== undefined && { category: data.category || null }),
       ...(data.icon !== undefined && { icon: data.icon }),
+      ...(password !== undefined && { password }),
+      ...(expiresAt !== undefined && { expiresAt }),
     },
   });
   return stripPassword(updated);
